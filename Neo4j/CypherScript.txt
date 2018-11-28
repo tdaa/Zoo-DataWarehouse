@@ -1,0 +1,146 @@
+//MATCH (n) DETACH DELETE n
+
+CREATE (VacaEscocesa:Animal {idAnimal: 16, nome: 'Bobby', especie: 'Bos Taurus', genero: 'M'})
+CREATE (MacacoLaraja:Animal {idAnimal: 17, nome: 'Api', especie: 'Uakari', genero: 'F'})
+CREATE (Cegonha:Animal {idAnimal: 18, nome: 'Hera', especie: 'Ardeidae', genero: 'F'})
+CREATE (Hipopotamo:Animal {idAnimal: 19, nome: 'Raul', especie: 'Hippopotamus amphibius', genero: 'M'})
+CREATE (Tartaruga:Animal {idAnimal: 20, nome: 'Marissa', especie: 'Geochelone Nigra', genero: 'F'})
+CREATE (Camaleao:Animal {idAnimal: 21, nome: 'Leo', especie: 'Gekkonidae', genero: 'M'})
+CREATE (Crocodilo:Animal {idAnimal: 22, nome: 'Gedson', especie: 'Gavialis gangeticus', genero: 'F'})
+
+CREATE (RitaP:Funcionario {idFuncionario: 9, nome: 'Rita Pereira', salario: 800, contacto: 962345678})
+CREATE (TelmoP:Funcionario {idFuncionario: 10, nome: 'Telmo Pontes', salario: 2640, contacto: 916231524})
+CREATE (CarmoR:Funcionario {idFuncionario: 11, nome: 'Carmo Rodrigues', salario: 1050, contacto: 917646664})
+
+CREATE (Truta:Alimento {nome: 'Truta', stock: 1500, idAlimento: 9})
+CREATE (Sementes:Alimento {nome: 'Sementes', stock: 2300, idAlimento: 10})
+CREATE (Pao:Alimento {nome: 'Pao', stock: 700, idAlimento: 11})
+
+CREATE (Jaula:Espaco {tipo: 'Jaula', tamanho: 'G', quantidade: 19, idEspaco: '5'})
+CREATE (Lago:Espaco {tipo: 'Lago', tamanho: 'G', quantidade: 25, idEspaco: '6'})
+
+CREATE (Lidl:Fornecedor {idFornecedor: 6, designacao: 'Lidl', contacto: '912674938', email: 'lidl@lidl.com'})
+
+CREATE (RitaP1:Endereco {rua: 'Rua Nova Pessoa, Nº71', concelho: 'Lamaçães', codigoPostal: '4719-983', distrito: 'Braga'})
+CREATE (TelmoP1:Endereco {rua: 'Rua Manuel Gouveia, Nº25', concelho: 'Aves', codigoPostal: '6291-326', distrito: 'Porto'})
+CREATE (CarmoR1:Endereco {rua: 'Rua Carlos Pinto, Nº12', concelho: 'Lisboa', codigoPostal: '5912-853', distrito: 'Lisboa'})
+CREATE (Lidl1:Endereco {rua: 'Rua B. Cardoso, Nº5', concelho: 'Barcelos', codigoPostal: '4127-261', distrito: 'Braga'})
+
+CREATE (V1:Refeicao {idRefeicao: 21, quantidade: 75, data: '2018-11-25 11:16:52'})
+CREATE (M1:Refeicao {idRefeicao: 22, quantidade: 70, data: '2018-11-24 17:42:57'})
+CREATE (C1:Refeicao {idRefeicao: 23, quantidade: 91, data: '2018-11-25 12:29:18'})
+CREATE (H1:Refeicao {idRefeicao: 24, quantidade: 15, data: '2018-11-24 23:28:25'})
+CREATE (Croc1:Refeicao {idRefeicao: 25, quantidade: 58, data: '2018-11-24 21:52:38'})
+CREATE (T1:Refeicao {idRefeicao: 26, quantidade: 52, data: '2018-11-24 18:41:41'})
+CREATE (Ca1:Refeicao {idRefeicao: 27, quantidade: 28, data: '2018-11-25 13:40:55'})
+
+CREATE
+  	
+  (Lidl)-[:Fornece{idAliForn: 19, quantidade: 1700, valor: 1140.00, data:'2018-11-20 10:41:47'}]->(Truta),
+  (Lidl)-[:Fornece{idAliForn: 20, quantidade: 400, valor: 300.00, data:'2018-11-21 12:27:26'}]->(Pao),
+  (Lidl)-[:Fornece{idAliForn: 21, quantidade: 2000, valor: 1600.00, data:'2018-11-19 24:16:31'}]->(Sementes),
+  (Lidl)-[:Fornece{idAliForn: 22, quantidade: 400, valor: 300.00, data:'2018-11-20 14:56:52'}]->(Pao)
+
+
+CREATE
+  	
+  (VacaEscocesa)-[:Come]->(V1),
+  (MacacoLaraja)-[:Come]->(M1),
+  (Cegonha)-[:Come]->(C1),
+  (Hipopotamo)-[:Come]->(H1),
+  (Tartaruga)-[:Come]->(T1),
+  (Crocodilo)-[:Come]->(Croc1),
+  (Camaleao)-[:Come]->(Ca1)
+
+CREATE
+  	
+  (RitaP)-[:Serve]->(V1),
+  (CarmoR)-[:Serve]->(M1),
+  (TelmoP)-[:Serve]->(C1),
+  (RitaP1)-[:Serve]->(H1),
+  (TelmoP)-[:Serve]->(T1),
+  (CarmoR)-[:Serve]->(Croc1),
+  (TelmoP)-[:Serve]->(Ca1)
+
+CREATE
+  	
+  (V1)-[:Consiste]->(Sementes),
+  (M1)-[:Consiste]->(Sementes),
+  (C1)-[:Consiste]->(Truta),
+  (H1)-[:Consiste]->(Truta),
+  (T1)-[:Consiste]->(Pao),
+  (Croc1)-[:Consiste]->(Truta),
+  (Ca1)-[:Consiste]->(Pao)
+
+
+CREATE
+  (RitaP)-[:Reside]->(RitaP1),
+  (TelmoP)-[:Reside]->(TelmoP1),
+  (CarmoR)-[:Reside]->(CarmoR1),
+  (Lidl)-[:Reside]->(Lidl1)
+
+CREATE
+  (VacaEscocesa)-[:Vive]->(Jaula),
+  (MacacoLaraja)-[:Vive]->(Jaula),
+  (Cegonha)-[:Vive]->(Lago),
+  (Hipopotamo)-[:Vive]->(Lago),
+  (Tartaruga)-[:Vive]->(Lago),
+  (Crocodilo)-[:Vive]->(Lago),
+  (Camaleao)-[:Vive]->(Jaula)
+
+
+//TESTES AOS RELACIONAMENTOS
+//WITH Tubarão as a
+//MATCH (a)-[:Vive]->(m) RETURN a,m LIMIT 10;
+
+//WITH Orca as a
+//MATCH (a)-[:Come]->(m) RETURN a,m LIMIT 10;
+
+//WITH RicardoM as a
+//MATCH (a)-[:Fornece]->(m) RETURN a,m LIMIT 10;
+
+//WITH AndreM as a
+//MATCH (a)-[:Possui]->(m) RETURN a,m LIMIT 10;
+
+
+//CONSTRAINTS PARA ALGUNS ATRIBUTOS
+CREATE CONSTRAINT ON (e:Espaco) ASSERT e.idEspaco IS UNIQUE;
+CREATE CONSTRAINT ON (a:Animal) ASSERT a.idAnimal IS UNIQUE;
+CREATE CONSTRAINT ON (a:Alimento) ASSERT a.idAlimento IS UNIQUE;
+CREATE CONSTRAINT ON (f:Funcionario) ASSERT f.idFuncionario IS UNIQUE;
+CREATE CONSTRAINT ON (a:Alimento) ASSERT a.nome IS UNIQUE;
+CREATE CONSTRAINT ON (f:Fornecedor) ASSERT f.idFornecedor IS UNIQUE;
+CREATE CONSTRAINT ON (r:Refeicao) ASSERT r.idRefeicao IS UNIQUE;
+
+
+//DROP CONSTRAINT ON (a:Espaco) ASSERT a.idEspaco IS UNIQUE
+//DROP CONSTRAINT ON (a:Funcionario) ASSERT a.idFuncionario IS UNIQUE
+//DROP CONSTRAINT ON (a:Alimento) ASSERT a.nome IS UNIQUE
+//DROP CONSTRAINT ON (a:Animal) ASSERT a.idAnimal IS UNIQUE;
+//DROP CONSTRAINT ON (a:Alimento) ASSERT a.idAlimento IS UNIQUE;
+//DROP CONSTRAINT ON (f:Funcionario) ASSERT f.idFuncionario IS UNIQUE;
+//DROP CONSTRAINT ON (a:Alimento) ASSERT a.nome IS UNIQUE;
+//DROP CONSTRAINT ON (f:Fornecedor) ASSERT f.idFornecedor IS UNIQUE;
+//DROP CONSTRAINT ON (r:Refeicao) ASSERT r.idRefeicao IS UNIQUE;
+
+
+// ##### QUERIES ##### \\
+
+//MATCH (a:Alimento) WHERE a.quantidade >= 100 RETURN a;
+
+//MATCH (an:Animal)-[Vive]-(:Espaco {tipo: 'Jaula'}) RETURN an;
+
+//MATCH (func:Funcionario) WHERE func.cidade = 'Braga' RETURN func ORDER BY func.salario;
+
+//MATCH (es:Espaco) WHERE es.tipo = 'Jaula' AND es.quantidade >= 3 RETURN es;
+
+//MATCH (an:Animal)-[c:Come]-(:Alimento) WHERE c.quantidade > 5 RETURN an;
+
+//MATCH (f:Funcionario)-[Fornece]-(al:Alimento {nome: 'Frango'}) RETURN f,al;
+
+// ##### INDEXES ##### \\
+
+
+CREATE INDEX ON :Animal(nome)
+
+//DROP INDEX ON :Animal(nome)
