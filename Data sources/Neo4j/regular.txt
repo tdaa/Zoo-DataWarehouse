@@ -1,0 +1,28 @@
+//MATCH (n) DETACH DELETE n
+
+CREATE (RuiC:Funcionario {idFuncionario: 15, nome: 'Rui Carlos', salario: 2120, contacto: 916232114})
+
+CREATE (Ovos:Alimento{nome: 'Ovos', stock: 1000, idAlimento: 12})
+
+CREATE (Walmart:Fornecedor {idFornecedor: 9, designacao: 'Walmart', contacto: '912641246', email: 'walmart@gmail.com'})
+
+CREATE (V2:Refeicao {idRefeicao: 28, quantidade: 28, data: '2018-11-25'})
+
+
+CREATE
+    
+  (Walmart)-[:Fornece{idAliForn: 23, quantidade: 1000, valor: 1510.00, data:'2018-11-26'}]->(Ovos)
+
+
+CREATE
+  (RuiC)-[:Serve]->(V2)
+
+
+
+MATCH (c:Funcionario {idFuncionario:11}) SET c.salario = 2000
+
+MATCH (s:Alimento {idAlimento:10}) SET s.stock = 3000
+
+MATCH (l:Fornecedor{idFornecedor:6}) SET l.designacao = 'Mega Lidl'
+
+MATCH (ca11:Refeicao{idRefeicao:27}) SET ca11.quantidade = 35
