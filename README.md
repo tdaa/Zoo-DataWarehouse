@@ -8,6 +8,6 @@ Amaaaazing project to the Data Warehouse course's evaluation.
  
  [Francisco Matos](https://github.com/FranciscoMatos97)
  
- [David José]()
+ [David José](https://github.com/DavidJSousa)
  
  [Ricardo Neves](https://github.com/snow97)
