@@ -1,6 +1,6 @@
 # Zoo-DataWarehouse
 
-Amaaaazing project to the Data Warehouse course's evaluation. 
+Amazing project to the Data Warehouse course's evaluation. 
 
 # Follow these guys:
 
